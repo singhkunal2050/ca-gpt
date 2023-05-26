@@ -7,6 +7,7 @@ from langchain.vectorstores.faiss import FAISS
 import pickle
 import os
 
+#will create a vector store for vector
 def create_vector_store():
 
     if os.path.exists('vectorstore.pkl'):
