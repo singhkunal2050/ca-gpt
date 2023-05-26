@@ -37,8 +37,8 @@ function ChatComponent() {
             className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-2`}
           >
             <div
-              className={`bg-white rounded-lg px-4 py-2 ${
-                message.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              className={`rounded-lg px-4 py-2 ${
+                message.sender === 'user' ? 'bg-[#DD81FF] text-black' : 'bg-gray-200'
               }`}
             >
               <p className={message.sender === 'user' ? 'text-right' : ''}>{message.content}</p>
