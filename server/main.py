@@ -5,7 +5,6 @@ from pathlib import Path
 import pickle
 from typing import Optional
 
-
 from langchain.llms import OpenAI
 from langchain import ConversationChain
 from langchain.chains import LLMChain
@@ -13,7 +12,6 @@ from langchain.vectorstores import VectorStore
 
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
-
 
 from ingest_data import create_vector_store
 from schemas.request_schemas import RequestBodyParams
@@ -23,7 +21,7 @@ app = FastAPI()
 
 
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-llm = OpenAI(openai_api_key="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", temperature=0.5, max_tokens=1000, frequency_penalty=0.2)
+llm = OpenAI(openai_api_key="api_key", temperature=0.5, max_tokens=1000, frequency_penalty=0.2)
 vectorstore: Optional[VectorStore] = None
 
 @app.on_event("startup")
