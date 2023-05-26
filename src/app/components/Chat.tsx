@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+type Message = {
+    sender: string;
+    content: string;
+};
 
 function ChatComponent() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
     setMessages([{ sender: 'bot', content: "Hello! How can I assist you?" }]);
   }, []);
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = (e:any) => {
     e.preventDefault();
     const message = e.target.message.value;
     if (message.trim() !== '') {
@@ -19,7 +23,9 @@ function ChatComponent() {
 
   const scrollToBottom = () => {
     const chatContainer = document.getElementById('chat-container');
-    chatContainer.scrollTop = chatContainer.scrollHeight;
+    if(chatContainer){
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
   };
 
   return (
