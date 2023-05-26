@@ -40,20 +40,20 @@ function ChatComponent() {
           </div>
         ))}
       </div>
-      <form onSubmit={handleSendMessage} className="flex items-center p-4">
+      <form onSubmit={handleSendMessage} className="flex items-center p-0 bg-white">
         <input
           type="text"
           name="message"
           placeholder="Type your message..."
-          className="flex-grow border-gray-300 border-2 rounded-lg py-2 px-4 focus:outline-none"
+          className="flex-growborder-0 rounded-lg py-2 px-4 focus:outline-none flex-1"
           autoComplete="off"
           required
         />
         <button
           type="submit"
-          className="ml-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg"
+          className="ml-2"
         >
-          Send
+         <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="48"><path d="M120-160v-640l760 320-760 320Zm60-93 544-227-544-230v168l242 62-242 60v167Zm0 0v-457 457Z"/></svg>
         </button>
       </form>
     </div>

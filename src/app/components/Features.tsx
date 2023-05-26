@@ -2,8 +2,8 @@ import React from 'react';
 
 function Features() {
   return (
-    <section className="py-20">
-      <div className="container mx-auto">
+    <section className="py-20 px-4 md:px-0">
+      <div className="max-w-screen-xl mx-auto p-4">
         <h2 className="text-3xl font-bold mb-10">Features</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           <div className="p-6 bg-white rounded-lg shadow-md">
