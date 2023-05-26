@@ -34,9 +34,9 @@ function Hero() {
         </form>
         <Image
           src="/sphere.svg"
-          className='absolute right-0 bottom-[-200px]' 
-          width={300}
-          height={300}
+          width={100}
+          height={100}
+          className='absolute right-0 bottom-[-100px] md:bottom-[-200px] w-[100px] md:w-[300px]' 
           alt="Picture of the author"
         />
       </div>

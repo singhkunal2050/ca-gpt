@@ -1,3 +1,7 @@
-from fastapi import FastAPI  
+from fastapi import FastAPI
 
-app = FastAPI() # This is what will be refrenced in config
+app = FastAPI()
+
+@app.get("/")
+def root():
+    return {"message": "Hello, World!"}
