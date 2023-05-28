@@ -6,12 +6,16 @@ type Message = {
 
 function ChatComponent() {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState<Boolean>(false);
 
   useEffect(() => {
-    setMessages([{ sender: 'bot', content: "Hello! How can I assist you?" }]);
+    // for(let i=0; i< 20 ; i++) {
+    //   setMessages([...messages, { sender: 'bot', content: "Hello! How can I assist you?" },{ sender: 'user', content: "Hello! How can I assist you?" }]);  
+    // }
   }, []);
 
   const handleSendMessage = (e:any) => {
+    setLoading(true);
     e.preventDefault();
     const message = e.target.message.value;
     if (message.trim() !== '') {
@@ -21,6 +25,10 @@ function ChatComponent() {
     }
   };
 
+  const abortRequest = (e: any) => {
+    // TODO
+  }
+
   const scrollToBottom = () => {
     const chatContainer = document.getElementById('chat-container');
     if(chatContainer){
@@ -28,38 +36,70 @@ function ChatComponent() {
     }
   };
 
-  return (
-    <div className="max-w-3xl mx-auto bg-gray-100 shadow-lg rounded-lg overflow-hidden">
-      <div id="chat-container" className="flex flex-col h-[80vh] p-4 overflow-y-auto">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-2`}
-          >
-            <div
-              className={`rounded-lg px-4 py-2 ${
-                message.sender === 'user' ? 'bg-[#DD81FF] text-black' : 'bg-gray-200'
-              }`}
-            >
-              <p className={message.sender === 'user' ? 'text-right' : ''}>{message.content}</p>
-            </div>
-          </div>
-        ))}
+  const renderHints = () => {
+    return <div className="bg-gray-100 text-gray-800 w-full mx-auto md:max-w-2xl lg:max-w-3xl md:h-full md:flex md:flex-col px-6 dark:text-gray-100 dark:bg-gray-800">
+      <h1 className="text-gray-800 dark:text-gray-100 text-4xl font-semibold text-center mt-6 sm:mt-[20vh] ml-auto mr-auto mb-10 sm:mb-16 flex gap-2 items-center justify-center">CA-GPT</h1>
+      <div className="text-gray-800 md:flex items-start text-center gap-3.5">
+        <div className="flex flex-col mb-8 md:mb-auto gap-3.5 flex-1">
+          <h2 className="dark:text-white text-gray-800 flex gap-3 items-center m-auto text-lg font-normal md:flex-col md:gap-2">
+            <svg stroke="currentColor" fill="none" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="h-6 w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            Examples</h2>
+          <ul className="flex flex-col gap-3.5 w-full sm:max-w-md m-auto">
+            <button className="w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900">"What are the tax slabs in India?" →</button>
+            <button className="w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900">"Which tax slab should I chose when?" →</button>
+            <button className="w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900">"What are the best tax saving techniques?" →</button>
+            <button className="w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900">"What are the different investments options for tax saving?" →</button>
+
+          </ul>
       </div>
-      <form onSubmit={handleSendMessage} className="flex items-center p-0 bg-white">
+    </div>
+    </div>
+  }
+
+  const renderMessages = (messages: Message[]) => {
+    return messages.map((message, index) => (
+      <div
+        key={index}
+        className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-2`}
+      >
+        <div
+          className={`rounded-lg px-4 py-2 dark:text-white ${
+            message.sender === 'user' ? 'bg-gray-200 dark:bg-slate-900' : 'dark:bg-gray-700 bg-white'
+          }`}
+        >
+          <p className={message.sender === 'user' ? 'text-right' : ''}>{message.content}</p>
+        </div>
+      </div>
+    ))
+  }
+
+  return (
+    <div className="max-w-3xl my-4 mx-auto bg-gray-100 dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden min-h-[88vh]">
+      <div id="chat-container" className="flex flex-col h-[80vh] p-4 overflow-y-auto  min-h-[84vh]">
+        { messages?.length ? renderMessages(messages) : renderHints()  }
+      </div>
+      <form onSubmit={handleSendMessage} className="flex items-center p-0 bg-white dark:bg-gray-700">
         <input
           type="text"
           name="message"
           placeholder="Type your message..."
-          className="flex-growborder-0 rounded-lg py-2 px-4 focus:outline-none flex-1"
+          className="flex-growborder-0 rounded-lg py-4 px-4 focus:outline-none flex-1 outline-none bottom-0 bg-white dark:bg-gray-700 dark:text-white"
           autoComplete="off"
           required
         />
+        <button type='button'
+          onClick={abortRequest}
+           className="ml-2">
+            <svg width="18" className={`dark:fill-white fill-black ${loading ? '' : 'hidden'}`} height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.25 14.3448V1.10345H15.75V14.3448H2.25ZM3.9375 12.6897H14.0625V2.75863H3.9375V12.6897Z" />
+            </svg>
+        </button>
         <button
           type="submit"
-          className="ml-2"
+          className="ml-2 fill-gray-400"
+          disabled={loading ? true : false}
         >
-         <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="48"><path d="M120-160v-640l760 320-760 320Zm60-93 544-227-544-230v168l242 62-242 60v167Zm0 0v-457 457Z"/></svg>
+         <svg xmlns="http://www.w3.org/2000/svg" className={`dark:fill-white fill-black ${loading ? '!fill-gray-400' : ''}`} height="18" viewBox="0 -960 960 960" width="48"><path d="M120-160v-640l760 320-760 320Zm60-93 544-227-544-230v168l242 62-242 60v167Zm0 0v-457 457Z"/></svg>
         </button>
       </form>
     </div>

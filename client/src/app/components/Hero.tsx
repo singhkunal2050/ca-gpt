@@ -15,7 +15,7 @@ function Hero() {
   }
 
   return (
-    <section className="bg-[#f0e9ff] py-20 px-4 md:px-0">
+    <section className="bg-[#eaf2ff] dark:bg-gray-700 dark:text-white py-20 px-4 md:px-0">
       <div className="max-w-screen-xl mx-auto p-4 relative">
         <h1 className="text-4xl font-bold mb-6">Welcome to CA GPT</h1>
         <p className="text-lg">Unlock the power of AI with our advanced SAS product.</p>
@@ -26,17 +26,17 @@ function Hero() {
           <input
             type="email"
             placeholder="Enter your email"
-            className="py-2 px-4 rounded-l-lg focus:outline-none"
+            className="py-2 px-4 rounded-l-lg focus:outline-none text-black"
             required
             onChange={(e:any)=>setemail(e.target.value)}
           />
-          <button className="bg-[#DD81FF] text-white px-6 rounded-r-lg">Subscribe</button>
+          <button className="bg-[#005bd3] dark:bg-gray-800 text-white px-6 rounded-r-lg">Subscribe</button>
         </form>
         <Image
           src="/sphere.svg"
           width={100}
           height={100}
-          className='absolute right-0 bottom-[-100px] md:bottom-[-200px] w-[100px] md:w-[300px]' 
+          className='absolute right-0 bottom-[-100px] md:bottom-[-200px] w-[100px] md:w-[300px] ' 
           alt="Picture of the author"
         />
       </div>
