@@ -14,12 +14,21 @@ function ChatComponent() {
     // }
   }, []);
 
-  const handleSendMessage = (e:any) => {
-    setLoading(true);
+  const handleSendMessage = async (e:any) => {
     e.preventDefault();
+    setLoading(true);
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const chats = await response.json();
+    const messageResult = chats.map((message:any, index:number) =>{
+      return {
+        sender: index % 2 == 0 ? 'user' : 'bot',
+        content: message.body.substring(0,Math.random()*1000%100)
+      }
+    });
+    console.log({chats});
     const message = e.target.message.value;
     if (message.trim() !== '') {
-      setMessages([...messages, { sender: 'user', content: message }]);
+      setMessages([...messages, ...messageResult]);
       e.target.reset();
       scrollToBottom();
     }
@@ -27,6 +36,7 @@ function ChatComponent() {
 
   const abortRequest = (e: any) => {
     // TODO
+    setLoading(false);
   }
 
   const scrollToBottom = () => {
@@ -60,8 +70,15 @@ function ChatComponent() {
     return messages.map((message, index) => (
       <div
         key={index}
-        className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} mb-2`}
+        className={`flex flex-col ${message.sender === 'user' ? 'items-end' : 'items-start'} mb-2`}
       >
+        <div className="avatar mb-2">
+          {
+            message.sender === 'user' ? <img src="https://randomuser.me/api/portraits/women/80.jpg" className='rounded-full' width={40} height={40} alt="" /> :
+            <img src="https://randomuser.me/api/portraits/women/88.jpg" className='rounded-full' width={40} height={40} alt="" />
+          }
+          
+        </div>
         <div
           className={`rounded-lg px-4 py-2 dark:text-white ${
             message.sender === 'user' ? 'bg-gray-200 dark:bg-slate-900' : 'dark:bg-gray-700 bg-white'
@@ -75,7 +92,7 @@ function ChatComponent() {
 
   return (
     <div className="max-w-3xl my-4 mx-auto bg-gray-100 dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden min-h-[88vh]">
-      <div id="chat-container" className="flex flex-col h-[80vh] p-4 overflow-y-auto  min-h-[84vh]">
+      <div id="chat-container" className="flex flex-col gap-2 h-[80vh] p-4 overflow-y-auto  min-h-[84vh]">
         { messages?.length ? renderMessages(messages) : renderHints()  }
       </div>
       <form onSubmit={handleSendMessage} className="flex items-center p-0 bg-white dark:bg-gray-700">
