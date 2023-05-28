@@ -37,18 +37,18 @@ function ChatComponent() {
   };
 
   const renderHints = () => {
-    return <div className="bg-gray-100 text-gray-800 w-full mx-auto md:max-w-2xl lg:max-w-3xl md:h-full md:flex md:flex-col px-6 dark:text-gray-100 dark:bg-gray-800">
-      <h1 className="text-gray-800 dark:text-gray-100 text-4xl font-semibold text-center mt-6 sm:mt-[20vh] ml-auto mr-auto mb-10 sm:mb-16 flex gap-2 items-center justify-center">CA-GPT</h1>
-      <div className="text-gray-800 md:flex items-start text-center gap-3.5">
-        <div className="flex flex-col mb-8 md:mb-auto gap-3.5 flex-1">
-          <h2 className="dark:text-white text-gray-800 flex gap-3 items-center m-auto text-lg font-normal md:flex-col md:gap-2">
-            <svg stroke="currentColor" fill="none" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" className="h-6 w-6" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    return <div className='bg-gray-100 text-gray-800 w-full mx-auto md:max-w-2xl lg:max-w-3xl md:h-full md:flex md:flex-col px-6 dark:text-gray-100 dark:bg-gray-800'>
+      <h1 className='text-gray-800 dark:text-gray-100 text-4xl font-semibold text-center mt-6 sm:mt-[20vh] ml-auto mr-auto mb-10 sm:mb-16 flex gap-2 items-center justify-center'>CA-GPT</h1>
+      <div className='text-gray-800 md:flex items-start text-center gap-3.5'>
+        <div className='flex flex-col mb-8 md:mb-auto gap-3.5 flex-1'>
+          <h2 className='dark:text-white text-gray-800 flex gap-3 items-center m-auto text-lg font-normal md:flex-col md:gap-2'>
+            <svg stroke='currentColor' fill='none' stroke-width='1.5' viewBox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' className='h-6 w-6' height='1em' width='1em' xmlns='http://www.w3.org/2000/svg'><circle cx='12' cy='12' r='5'></circle><line x1='12' y1='1' x2='12' y2='3'></line><line x1='12' y1='21' x2='12' y2='23'></line><line x1='4.22' y1='4.22' x2='5.64' y2='5.64'></line><line x1='18.36' y1='18.36' x2='19.78' y2='19.78'></line><line x1='1' y1='12' x2='3' y2='12'></line><line x1='21' y1='12' x2='23' y2='12'></line><line x1='4.22' y1='19.78' x2='5.64' y2='18.36'></line><line x1='18.36' y1='5.64' x2='19.78' y2='4.22'></line></svg>
             Examples</h2>
-          <ul className="flex flex-col gap-3.5 w-full sm:max-w-md m-auto">
-            <button className="w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900">"What are the tax slabs in India?" →</button>
-            <button className="w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900">"Which tax slab should I chose when?" →</button>
-            <button className="w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900">"What are the best tax saving techniques?" →</button>
-            <button className="w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900">"What are the different investments options for tax saving?" →</button>
+          <ul className='flex flex-col gap-3.5 w-full sm:max-w-md m-auto'>
+            <button className='w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900'>&apos;What are the tax slabs in India?&apos; →</button>
+            <button className='w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900'>&apos;Which tax slab should I chose when?&apos; →</button>
+            <button className='w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900'>&apos;What are the best tax saving techniques?&apos; →</button>
+            <button className='w-full bg-gray-50 dark:bg-white/5 dark:text-gray-100 dark:bg-gray-800 p-3 rounded-md hover:bg-gray-200 dark:hover:bg-gray-900'>&apos;What are the different investments options for tax saving?&apos; →</button>
 
           </ul>
       </div>
