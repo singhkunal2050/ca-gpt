@@ -17,6 +17,7 @@ from ingest_data import create_vector_store
 from schemas.request_schemas import RequestBodyParams
 
 app = FastAPI()
+app.run(host='0.0.0.0')
 
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 llm = OpenAI(openai_api_key="api_key", temperature=0.5, max_tokens=1000, frequency_penalty=0.2)
